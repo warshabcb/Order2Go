@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewData["Title"] = "Facturas por Mes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+
+
+
+<div class="container">
+    <div class="jumbotron text-center">
+        <h4>Listado de Ventas por Mes</h4>
+    </div>
+</div>
+
+<div class="container border p-3">
+   
+        <select name="Meses" id="Mes">
+            <option value="01" selected>Enero</option>
+            <option value="02">Febrero</option>
+            <option value="03">Marzo</option>
+            <option value="04">Abril</option>
+            <option value="05">Mayo</option>
+            <option value="06">Junio</option>
+            <option value="07">Julio</option>
+            <option value="08">Agosto</option>
+            <option value="09">Setiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+        </select>
+        <select name="Años" id="Año">
+            <option value="2021" selected>2021</option>
+            <option value="2022">2022</option>
+        </select>
+        <select name="Comercios" id="Comercio">
+            
+            @foreach (var c in ViewData["comercios"] as List<Comercio>) // Print the list
+            {
+                <option value="@c.Id" >@c.Nombre</option>               
+            }
+        </select>
+        <button class="" id="ConsultaVentas">Consultar</button>
+
+
+</div>
+
+<div class="container border p-3">
+    <table class="table" id="TablaVentas">
+        <thead>
+            <tr>
+                <th>IdFactura</th>
+                <th>Nombre Cliente</th>
+                <th class="text-center">Tipo Venta (Tarjeta-Efectivo)</th>
+                <th class="text-center">Monto Total Factura</th>
+                <th class="text-center">Fecha Compra</th>
+            </tr>
+        </thead>
+        <tbody id="TablaDatosVentas">
+        </tbody>
+    </table>
+     <h3 id="sumatoria" class="asp-format ='{0:C}' text-center"></h3>  
+</div>

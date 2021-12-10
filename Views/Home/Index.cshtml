@@ -1,0 +1,169 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    @if (User.IsInRole("Admin"))
+    {
+        <div class=" jumbotron text-center">
+            <h3 class="display-4"><strong>Order2Go</strong></h3>
+            <br />
+        </div>
+
+        <div class="row justify-content-between">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Comercios</h4>
+                        <p class="card-text">Control de Comercios Registrados</p>
+                        <div class="text-center">
+                            <a asp-action="Index" asp-controller="Comercio" class="btn btn-primary mb-4"><i class="fa fa-plus"> Comercios </i></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Usuarios</h4>
+                        <p class="card-text">Control de Usuarios</p>
+                        <div class="text-center">
+                            <a asp-action="Index" asp-controller="User" class="btn btn-primary mb-4"><i class="fa fa-plus"> Usuarios</i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card ">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Productos</h4>
+                        <p class="card-text">Control de Inventario</p>
+                        <div class="text-center">
+                            <a asp-action="Index" asp-controller="Productos" class="btn btn-primary mb-4"><i class="fa fa-plus"> Inventario</i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 mt-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Modulo Reportes</h4>
+                        <p class="card-text">Control de Reportes</p>
+                        <div class="text-center">
+                            <a asp-action="Reporte" asp-controller="Comercio" class="btn btn-primary mb-4"><i class="fa fa-plus"> Reportes </i></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 mt-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Ventas por Mes</h4>
+                        <p class="card-text">Ventas por mes </p>
+                        <div class="text-center">
+                            <a asp-action="VentasMes" asp-controller="Facturas" class="btn btn-primary mb-4"><i class="fa fa-plus"> Reportes </i></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+}
+@if (User.IsInRole("Operator"))
+{
+<div class="row text-center">
+    <div class="col-2"></div>
+    <div class="col-4">
+        <div class="card ">
+            <div class="card-body text-center">
+                <h4 class="card-title">Productos</h4>
+                <p class="card-text">Control de Inventario</p>
+                <div class="text-center">
+                    <a asp-action="Index" asp-controller="Productos" class="btn btn-primary mb-4"><i class="fa fa-plus"> Inventario</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h4 class="card-title">Ventas por Mes</h4>
+                <p class="card-text">Ventas por mes </p>
+                <div class="text-center">
+                    <a asp-action="VentasMes" asp-controller="Facturas" class="btn btn-primary mb-4"><i class="fa fa-plus"> Reportes </i></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+
+    }
+
+
+    @if (User.IsInRole("User"))
+    {
+
+        <div class="jumbotron text-center">
+            <h3><strong>Order2Go</strong> </h3>
+            <p>Somos su mejor opcion para Comida a Domicilio. </p>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="text-center card">
+                    <img src="/img/ArrozConPollo.png" class="mx-auto d-block" height="160" width="220" alt="Order2Go" />
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="text-center card">
+                    <img src="/img/Casado Carne.jpg" class="mx-auto d-block" width="220" alt="Order2Go" />
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="text-center card">
+                    <img src="/img/Casado.jpg" class="mx-auto d-block" width="220" alt="Order2Go" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center   ">
+                    <img src="/img/order2go.jpg" class="mx-auto d-block" width="320" alt="Order2Go" />
+                    <p>By<strong> WaCon</strong></p>
+                </div>
+
+            </div>
+        </div>
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

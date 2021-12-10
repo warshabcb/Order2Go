@@ -1,0 +1,42 @@
+﻿@model Order2Go.Models.Producto
+@{
+    ViewData["Title"] = "Detalles del Producto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card border">
+            <div class="card-header">
+                <h5 class="text-center"><strong>Detalle Producto Inventario</strong></h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row card-body">
+    <div class="col-6">
+        <ul class="list-group">
+            <li class="list-group-item"> <strong>ID: </strong>@Html.DisplayFor(m => m.Id)</li>
+            <li class="list-group-item"> <strong>Codigo: </strong>@Html.DisplayFor(m => m.Codigo)</li>
+            <li class="list-group-item"> <strong>Nombre: </strong>@Html.DisplayFor(m => m.Nombre)</li>
+            <li class="list-group-item"> <strong>Descripcion: </strong>@Html.DisplayFor(m => m.Descripcion)</li>
+            <li class="list-group-item"> <strong>Cantidad: </strong>@Html.DisplayFor(m => m.Cantidad)</li>
+            <li class="list-group-item"> <strong>Cantidad: </strong>@Html.DisplayFor(m => m.Precio)</li>
+        </ul>
+    </div>
+    <div class="col-6 text-center">
+        <img src="@Html.DisplayFor(m => m.UrlImagen)" class="rounded" width="380" height="350" alt="Cinque Terre">
+    </div>
+</div>
+
+
+
+
+
+
+<div class=" text-center">
+    <a asp-action="Index">Regresar al Inventario</a>
+</div>
+

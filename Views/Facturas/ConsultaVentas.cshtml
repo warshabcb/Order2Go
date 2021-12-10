@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Order2Go.Models.Factura>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-6">
+        <div class="float-left">
+            <a asp-action="Reporte" asp-controller="Comercio" class="btn btn-primary mb-4"><i class="fas fa-home"> Regresar </i></a>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card border">
+            <div class="card-header">
+                <h5 class="text-center"><strong>Consulta Ventas @ViewData["Comercio"]</strong></h5>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+
+
+                @if (Model.Count() > 0)
+                {
+                    double Valor = 0;
+                    <table class="table table-sm table-bordered table-striped  table-hover" id="TablaFisicos" width="100%">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class=" text-center">@Html.DisplayNameFor(m => m.IdFactura)</th>
+                                <th>@Html.DisplayNameFor(m => m.NombreFactura)</th>
+                                <th>@Html.DisplayNameFor(m => m.TipoVenta)</th>
+                                <th>@Html.DisplayNameFor(m => m.Monto)</th>
+                                <th>@Html.DisplayNameFor(m => m.Fecha)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">@Html.DisplayFor(m => item.IdFactura)</td>
+                                    <td class="text-center">@Html.DisplayFor(m => item.NombreFactura)</td>
+                                    <td class="text-center">@Html.DisplayFor(m => item.TipoVenta)</td>
+                                    <td class="text-center">@Html.DisplayFor(m => item.Monto)</td>
+                                    <td class="text-center">@Html.DisplayFor(m => item.Fecha)</td>
+                                    @{
+                                        Valor = (Valor + double.Parse(item.Monto.ToString()));
+                                    }
+                                </tr>
+                            }
+
+                        </tbody>
+
+                    </table>
+                    <h5 class="text-right">Monto total de ventas es : <strong> @Valor.ToString("C")</strong> </h5>
+                    }
+                else
+                {
+                    <p>No existen registros en la Base Datos</p>
+                }
+            </div>
+
+        </div>
+
+    </div>
+</div>

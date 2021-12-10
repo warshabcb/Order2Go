@@ -1,0 +1,34 @@
+﻿@model Order2Go.Models.Comercio
+@{
+    ViewData["Title"] = "Detalles del Comercio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card border">
+            <div class="card-header">
+                <h5 class="text-center"><strong>Detalle Comercios Registrado</strong></h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row card-body">
+    <div class="col-12">
+        <ul class="list-group">
+            <li class="list-group-item"> <strong>ID: </strong>@Html.DisplayFor(m => m.Id)</li>
+            <li class="list-group-item"> <strong>Nombre: </strong>@Html.DisplayFor(m => m.Nombre)</li>
+            <li class="list-group-item"> <strong>Descripcion: </strong>@Html.DisplayFor(m => m.Descripcion)</li>
+            <li class="list-group-item"> <strong>Descripcion: </strong>@Html.DisplayFor(m => m.Telefono)</li>
+        </ul>
+    </div>
+   
+</div>
+
+
+
+<div class=" text-center">
+    <a class="btn btn-info btn-sm" asp-action="Index">Regresar al Inventario</a>
+</div>
