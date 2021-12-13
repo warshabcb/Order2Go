@@ -1,11 +1,9 @@
 @model IEnumerable<Order2Go.Models.Producto>
- 
+@using Order2Go.Extensions
 
 @{
     ViewData["Title"] = "Lista de Productos";
-    //List<int> carrito = Context.Session.GetObject<List<int>>("CARRITO");
-        
-    List<int> carrito = 
+    List<int> carrito = Context.Session.GetObject<List<int>>("CARRITO");
 }
 
 <h1>GetProductos</h1>
