@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Threading.Tasks;
 using Order2Go.Data;
@@ -8,6 +9,7 @@ using Order2Go.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Order2Go.Extensions;
 
 namespace MiniSuper.Controllers
 {
@@ -213,9 +215,58 @@ namespace MiniSuper.Controllers
             _context.Productos.Update(pro);
             _context.SaveChanges();       
         }
-
-
-
+         public IActionResult GetProductos(int? idproducto)
+        {
+            if (idproducto != null)
+            {
+                List<int> carrito;
+                if (HttpContext.Session.GetObject<List<int>>("CARRITO") == null)
+                {
+                    carrito = new List<int>();
+                }
+                else
+                {
+                    carrito = HttpContext.Session.GetObject<List<int>>("CARRITO");
+                }
+                if (carrito.Contains(idproducto.Value) == false)
+                {
+                    carrito.Add(idproducto.Value);
+                    HttpContext.Session.SetObject("CARRITO", carrito);
+                }
+            }
+            List<Producto> productos = _context.Productos.ToList();
+            return View(productos);
+        }
+          public IActionResult Carrito(int? idproducto)
+        {
+            List<int> carrito = HttpContext.Session.GetObject<List<int>>("CARRITO");
+            if (carrito == null)
+            {
+                return View();
+            }
+            else
+            {
+                if (idproducto != null)
+                {
+                    carrito.Remove(idproducto.Value);
+                    HttpContext.Session.SetObject("CARRITO", carrito);
+                }
+                List<Producto> productos = GetProductosCarrito(carrito);
+                return View(productos);
+            }
+        }
+        public IActionResult Pedidos()
+        {
+            List<int> carrito = HttpContext.Session.GetObject<List<int>>("CARRITO");
+            List<Producto> productos = _context.Productos.ToList();
+            HttpContext.Session.Remove("CARRITO");
+            return View(productos);
+        }
+        public List<Producto> GetProductosCarrito(List<int> idproductos)
+        {
+            List<Producto> productos = _context.Productos.Where(xx => idproductos.Contains(xx.Id)).ToList();             
+            return productos;
+        }
 
     }
 }
