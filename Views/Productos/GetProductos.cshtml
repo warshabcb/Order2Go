@@ -1,8 +1,11 @@
 @model IEnumerable<Order2Go.Models.Producto>
+ 
 
 @{
     ViewData["Title"] = "Lista de Productos";
-    List<int> carrito = Context.Session.GetObject<List<int>>("CARRITO");
+    //List<int> carrito = Context.Session.GetObject<List<int>>("CARRITO");
+        
+    List<int> carrito = 
 }
 
 <h1>GetProductos</h1>
@@ -29,13 +32,13 @@
                 @Html.DisplayFor(modelItem => item.Precio)
             </td>
             <td>
-                @if(carrito != null && carrito.Contains(item.IdProducto))
+                @if(carrito != null && carrito.Contains(item.Id))
                 {
                     <button disabled class="btn btn-outline-danger disabled">En carrito</button>
                 }
                 else
                 {
-                    <a class="btn btn-outline-success" asp-action="GetProductos" asp-controller="Productos" asp-route-idproducto="@item.IdProducto">
+                    <a class="btn btn-outline-success" asp-action="GetProductos" asp-controller="Productos" asp-route-idproducto="@item.Id">
                         Añadir a carrito
                     </a>
                 }
