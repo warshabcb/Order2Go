@@ -6,41 +6,50 @@
     List<int> carrito = Context.Session.GetObject<List<int>>("CARRITO");
 }
 
-<h1>GetProductos</h1>
+<h1>Lista de Productos</h1>
 
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th  >
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
-            <th>
+            <th  >
                 @Html.DisplayNameFor(model => model.Precio)
             </th>
-            <th></th>
+            <th  >
+                @Html.DisplayNameFor(model => model.UrlImagen)
+            </th>
+            <th>
+                
+            </th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td  >
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
-            <td>
+            <td  >
                 @Html.DisplayFor(modelItem => item.Precio)
             </td>
-            <td>
+            <td >
+                <img src="@Html.DisplayFor(modelItem => item.UrlImagen)" class="rounded" width="180" height="200" alt="Iamgen">
+              
+            </td>
+            <td class=" ">
                 @if(carrito != null && carrito.Contains(item.Id))
                 {
-                    <button disabled class="btn btn-outline-danger disabled">En carrito</button>
+                    
+                    <button disabled class="btn btn-outline-danger disabled align-self-center ">En Carrito</button>
                 }
                 else
                 {
-                    <a class="btn btn-outline-success" asp-action="GetProductos" asp-controller="Productos" asp-route-idproducto="@item.Id">
-                        Añadir a carrito
+                    <a class="btn btn-outline-success align-self-center   " asp-action="GetProductos" asp-controller="Productos" asp-route-idproducto="@item.Id">
+                        Añadir a Carrito
                     </a>
                 }
-                
             </td>
         </tr>
 }
